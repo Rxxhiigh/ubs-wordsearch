@@ -8,126 +8,136 @@
   :root {
     --red: #E3000F;
     --dark: #1a1a1a;
-    --mid: #444;
-    --light: #f5f5f5;
-    --border: #ddd;
+    --mid: #666;
+    --light: #f7f7f7;
+    --border: #e0e0e0;
     --found-bg: #d4edda;
+    --found-text: #155724;
     --found-border: #28a745;
     --sel-bg: #fff3cd;
     --sel-border: #E3000F;
     --white: #ffffff;
-    --radius: 10px;
+    --radius: 12px;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
   body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: var(--light);
     color: var(--dark);
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
-  /* ── SCREENS ── */
-  .screen { display: none; min-height: 100vh; }
-  .screen.active { display: flex; flex-direction: column; }
+  .screen { display: none; min-height: 100vh; flex-direction: column; }
+  .screen.active { display: flex; }
 
-  /* ── HEADER BAND ── */
+  /* TOP BAR */
   .top-bar {
     background: var(--red);
     color: white;
-    padding: 14px 20px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-shrink: 0;
   }
-  .top-bar .logo { font-size: 22px; font-weight: 800; letter-spacing: 1px; }
-  .top-bar .event-label { font-size: 11px; opacity: 0.85; text-align: right; line-height: 1.4; }
+  .top-bar .logo { font-size: 24px; font-weight: 900; letter-spacing: 1px; }
+  .top-bar .event-label { font-size: 10px; opacity: 0.9; text-align: right; line-height: 1.5; }
 
   /* ── NAME SCREEN ── */
   #screen-name {
-    justify-content: center;
+    background: #fff;
+    justify-content: flex-start;
+  }
+  .name-body {
+    flex: 1;
+    display: flex;
     align-items: center;
-    background: linear-gradient(160deg, #fff 60%, #ffe8ea 100%);
+    justify-content: center;
+    padding: 24px 20px;
   }
   .name-card {
-    background: white;
-    border-radius: 16px;
-    padding: 40px 36px;
-    max-width: 420px;
-    width: 90%;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    width: 100%;
+    max-width: 400px;
     text-align: center;
   }
-  .name-card .diya { font-size: 48px; margin-bottom: 12px; }
-  .name-card h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
-  .name-card .sub { font-size: 13px; color: var(--mid); margin-bottom: 28px; line-height: 1.5; }
+  .diya { font-size: 56px; margin-bottom: 14px; display: block; }
+  .name-card h1 { font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--dark); line-height: 1.2; }
+  .name-card .sub { font-size: 14px; color: var(--mid); margin-bottom: 28px; line-height: 1.6; }
   .name-card input {
     width: 100%;
-    padding: 13px 16px;
-    border: 1.5px solid var(--border);
+    padding: 16px 18px;
+    border: 2px solid var(--border);
     border-radius: var(--radius);
-    font-size: 15px;
+    font-size: 16px;
     outline: none;
     transition: border 0.2s;
     margin-bottom: 14px;
+    background: white;
+    color: var(--dark);
   }
   .name-card input:focus { border-color: var(--red); }
   .btn-primary {
     width: 100%;
-    padding: 14px;
+    padding: 16px;
     background: var(--red);
     color: white;
     border: none;
     border-radius: var(--radius);
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
-    transition: opacity 0.15s;
+    transition: opacity 0.15s, transform 0.1s;
   }
-  .btn-primary:hover { opacity: 0.88; }
-  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
 
   /* ── CATEGORY SCREEN ── */
   #screen-category { background: var(--light); }
-  .cat-body { padding: 20px; flex: 1; overflow-y: auto; }
-  .cat-body h2 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
-  .cat-body .greeting { font-size: 13px; color: var(--mid); margin-bottom: 18px; }
+  .cat-body { padding: 16px; flex: 1; overflow-y: auto; }
+  .cat-body h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .cat-body .greeting { font-size: 13px; color: var(--mid); margin-bottom: 16px; }
+
   .cat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
   .cat-card {
     background: white;
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    padding: 14px 12px;
+    padding: 16px 12px;
     cursor: pointer;
     transition: all 0.15s;
     text-align: center;
+    -webkit-tap-highlight-color: transparent;
   }
-  .cat-card:hover { border-color: var(--red); background: #fff5f5; }
-  .cat-card .cat-icon { font-size: 26px; margin-bottom: 6px; }
-  .cat-card .cat-name { font-size: 12px; font-weight: 600; color: var(--dark); line-height: 1.3; }
-  .cat-card .cat-count { font-size: 11px; color: var(--mid); margin-top: 2px; }
+  .cat-card:active { background: #fff5f5; border-color: var(--red); transform: scale(0.97); }
+  .cat-card.featured { border-color: var(--red); border-width: 2px; }
+  .cat-card .featured-tag { font-size: 9px; background: var(--red); color: white; padding: 2px 7px; border-radius: 10px; display: inline-block; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.03em; }
+  .cat-card .cat-icon { font-size: 28px; margin-bottom: 6px; display: block; }
+  .cat-card .cat-name { font-size: 12px; font-weight: 700; color: var(--dark); line-height: 1.3; }
+  .cat-card .cat-count { font-size: 11px; color: var(--mid); margin-top: 3px; }
 
-  /* leaderboard button */
   .lb-btn {
-    display: block;
-    margin: 16px 20px 0;
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px 16px 0;
+    padding: 12px;
     background: white;
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
     color: var(--dark);
   }
-  .lb-btn:hover { border-color: var(--red); }
+  .lb-btn:active { background: var(--light); }
 
   /* ── GAME SCREEN ── */
   #screen-game { background: white; }
@@ -135,84 +145,95 @@
   .game-top {
     background: white;
     border-bottom: 1px solid var(--border);
-    padding: 10px 16px;
+    padding: 10px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-shrink: 0;
   }
-  .game-top .cat-label { font-size: 13px; font-weight: 700; color: var(--dark); }
-  .game-top .player-label { font-size: 11px; color: var(--mid); }
+  .game-top-left .cat-label { font-size: 14px; font-weight: 800; color: var(--dark); }
+  .game-top-left .player-label { font-size: 11px; color: var(--mid); margin-top: 1px; }
 
   .timer-box {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     background: var(--red);
     color: white;
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 18px;
-    font-weight: 800;
+    border-radius: 22px;
+    padding: 7px 16px;
+    font-size: 20px;
+    font-weight: 900;
     font-variant-numeric: tabular-nums;
+    min-width: 72px;
+    justify-content: center;
   }
-  .timer-box.warning { background: #b30000; animation: pulse 0.5s infinite alternate; }
-  @keyframes pulse { from { opacity: 1; } to { opacity: 0.65; } }
+  .timer-box.warning {
+    background: #8b0000;
+    animation: pulse 0.6s infinite alternate;
+  }
+  @keyframes pulse { from { opacity: 1; } to { opacity: 0.6; } }
 
   .game-body {
     flex: 1;
     overflow-y: auto;
-    padding: 12px 16px;
+    padding: 12px 10px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    align-items: center;
   }
 
-  /* WORD GRID — matching reference: large spaced cells */
+  .score-row {
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+    color: var(--mid);
+    width: 100%;
+    padding: 0 4px;
+  }
+  .score-row b { color: var(--dark); }
+
+  /* PUZZLE GRID — mobile-first 14 cols */
   #puzzle-grid {
-    display: inline-block;
-    border: 2px solid var(--dark);
-    border-radius: 8px;
-    padding: 10px;
+    border: 2.5px solid var(--dark);
+    border-radius: 10px;
+    padding: 8px 6px;
     background: white;
     user-select: none;
     -webkit-user-select: none;
     touch-action: none;
-    align-self: center;
+    width: 100%;
+    max-width: 420px;
   }
-  .grid-row { display: flex; }
+  .grid-row { display: flex; justify-content: center; }
+
   .cell {
-    width: 36px;
-    height: 36px;
+    /* size calculated dynamically via JS */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
-    font-weight: 700;
+    font-weight: 800;
     font-family: 'Courier New', monospace;
     color: var(--dark);
     cursor: pointer;
     border-radius: 4px;
     transition: background 0.08s;
-    letter-spacing: 0;
+    flex-shrink: 0;
   }
-  .cell.selected { background: var(--sel-bg); outline: 1.5px solid var(--sel-border); }
-  .cell.found { background: var(--found-bg); color: #155724; }
+  .cell.selected { background: var(--sel-bg); outline: 2px solid var(--sel-border); z-index: 1; position: relative; }
+  .cell.found { background: var(--found-bg); color: var(--found-text); }
 
-  /* Word list */
-  .word-section { }
-  .word-section h3 { font-size: 13px; font-weight: 600; color: var(--mid); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
-  .word-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+  /* Word chips */
+  .word-section { width: 100%; max-width: 420px; }
+  .word-section-title { font-size: 12px; font-weight: 700; color: var(--mid); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; padding: 0 2px; }
+  .word-chips { display: flex; flex-wrap: wrap; gap: 7px; }
   .word-chip {
-    padding: 5px 12px;
+    padding: 7px 13px;
     border: 1.5px solid var(--border);
     border-radius: 20px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     background: white;
     color: var(--dark);
     transition: all 0.2s;
@@ -220,200 +241,177 @@
   .word-chip.found {
     background: var(--found-bg);
     border-color: var(--found-border);
-    color: #155724;
+    color: var(--found-text);
     text-decoration: line-through;
   }
 
-  .score-live {
-    display: flex;
-    gap: 16px;
-    font-size: 13px;
-    color: var(--mid);
+  /* ── TIME UP OVERLAY ── */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
   }
-  .score-live span { font-weight: 700; color: var(--dark); }
+  .overlay.show { display: flex; }
+  .overlay-box {
+    background: white;
+    border-radius: 18px;
+    padding: 32px 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 340px;
+  }
+  .overlay-box .big-emoji { font-size: 52px; margin-bottom: 12px; display: block; }
+  .overlay-box h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .overlay-box p { font-size: 14px; color: var(--mid); margin-bottom: 22px; line-height: 1.5; }
 
   /* ── RESULT SCREEN ── */
   #screen-result {
-    justify-content: center;
+    background: #fff;
+    justify-content: flex-start;
+  }
+  .result-body {
+    flex: 1;
+    display: flex;
     align-items: center;
-    background: linear-gradient(160deg, #fff 60%, #ffe8ea 100%);
+    justify-content: center;
+    padding: 24px 20px;
   }
   .result-card {
-    background: white;
-    border-radius: 16px;
-    padding: 36px 32px;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    width: 100%;
+    max-width: 380px;
     text-align: center;
   }
-  .result-card .trophy { font-size: 52px; margin-bottom: 10px; }
-  .result-card h2 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-  .result-card .result-sub { font-size: 14px; color: var(--mid); margin-bottom: 20px; }
-  .result-score {
-    font-size: 52px;
-    font-weight: 900;
-    color: var(--red);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .result-score-label { font-size: 13px; color: var(--mid); margin-bottom: 24px; }
+  .result-card .trophy { font-size: 60px; margin-bottom: 12px; display: block; }
+  .result-card h2 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  .result-card .result-sub { font-size: 14px; color: var(--mid); margin-bottom: 22px; line-height: 1.5; }
+  .result-score { font-size: 72px; font-weight: 900; color: var(--red); line-height: 1; margin-bottom: 4px; }
+  .result-score-label { font-size: 14px; color: var(--mid); margin-bottom: 28px; }
   .result-btns { display: flex; flex-direction: column; gap: 10px; }
   .btn-secondary {
     width: 100%;
-    padding: 13px;
+    padding: 15px;
     background: white;
     color: var(--dark);
-    border: 1.5px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: var(--radius);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
   }
-  .btn-secondary:hover { border-color: var(--red); }
+  .btn-secondary:active { background: var(--light); }
 
-  /* ── LEADERBOARD SCREEN ── */
+  /* ── LEADERBOARD ── */
   #screen-lb { background: var(--light); }
-  .lb-body { padding: 20px; flex: 1; overflow-y: auto; }
-  .lb-body h2 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+  .lb-body { padding: 16px; flex: 1; overflow-y: auto; }
+  .lb-body h2 { font-size: 18px; font-weight: 800; margin-bottom: 14px; }
   .lb-row {
     display: flex;
     align-items: center;
     gap: 12px;
     background: white;
     border-radius: var(--radius);
-    padding: 12px 16px;
+    padding: 13px 16px;
     margin-bottom: 8px;
     border: 1px solid var(--border);
   }
-  .lb-rank { font-size: 18px; font-weight: 800; width: 32px; color: var(--mid); }
-  .lb-rank.gold { color: #f5a623; }
-  .lb-rank.silver { color: #9b9b9b; }
-  .lb-rank.bronze { color: #c07c3e; }
-  .lb-info { flex: 1; }
-  .lb-name { font-size: 14px; font-weight: 700; }
-  .lb-cat { font-size: 11px; color: var(--mid); }
-  .lb-score { font-size: 20px; font-weight: 800; color: var(--red); }
-  .lb-empty { text-align: center; color: var(--mid); padding: 40px 0; font-size: 14px; }
-  .back-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 0 8px 0 0;
-  }
+  .lb-rank { font-size: 20px; font-weight: 900; width: 36px; color: var(--mid); text-align: center; }
+  .lb-info { flex: 1; min-width: 0; }
+  .lb-name { font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lb-cat { font-size: 11px; color: var(--mid); margin-top: 2px; }
+  .lb-score { font-size: 22px; font-weight: 900; color: var(--red); }
+  .lb-empty { text-align: center; color: var(--mid); padding: 48px 0; font-size: 15px; }
+  .back-btn { background: none; border: none; color: white; font-size: 22px; cursor: pointer; padding: 0 10px 0 0; line-height: 1; }
 
-  /* overlay when time is up */
-  .time-up-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 100;
-    justify-content: center;
-    align-items: center;
-  }
-  .time-up-overlay.show { display: flex; }
-  .time-up-box {
-    background: white;
-    border-radius: 16px;
-    padding: 32px 28px;
-    text-align: center;
-    max-width: 300px;
-    width: 88%;
-  }
-  .time-up-box h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
-  .time-up-box p { font-size: 14px; color: var(--mid); margin-bottom: 20px; }
-
-  @media (max-width: 400px) {
-    .cell { width: 28px; height: 28px; font-size: 12px; }
-    .cat-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  .hint-text { font-size: 11px; color: var(--mid); text-align: center; width: 100%; }
 </style>
 </head>
 <body>
 
-<!-- ════════════════ NAME SCREEN ════════════════ -->
+<!-- ════ NAME SCREEN ════ -->
 <div id="screen-name" class="screen active">
   <div class="top-bar">
     <div class="logo">UBS</div>
     <div class="event-label">Belonging Week 2026<br>APAC Cultural Awareness Network</div>
   </div>
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div class="name-body">
     <div class="name-card">
-      <div class="diya">🪔</div>
-      <h1>Indian Culture Word Search</h1>
-      <p class="sub">Test your knowledge of Indian culture in 60 seconds! Pick a category and find as many words as you can.</p>
-      <input type="text" id="name-input" placeholder="Enter your name to start" maxlength="30" autocomplete="off" />
-      <button class="btn-primary" id="name-next-btn" onclick="goToCategories()" disabled>Let's Play →</button>
+      <span class="diya">🪔</span>
+      <h1>Indian Culture<br>Word Search</h1>
+      <p class="sub">Test your knowledge of Indian culture in 90 seconds! Pick a category and find as many words as you can.</p>
+      <input type="text" id="name-input" placeholder="Enter your name" maxlength="30" autocomplete="off" />
+      <button class="btn-primary" id="name-btn" onclick="goToCategories()" disabled>Let's Play →</button>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ CATEGORY SCREEN ════════════════ -->
+<!-- ════ CATEGORY SCREEN ════ -->
 <div id="screen-category" class="screen">
   <div class="top-bar">
     <div class="logo">UBS</div>
     <div class="event-label">Belonging Week 2026<br>APAC Cultural Awareness Network</div>
   </div>
-  <button class="lb-btn" onclick="showLeaderboard()">🏆 View Leaderboard</button>
+  <button class="lb-btn" onclick="showLeaderboard()">🏆 Leaderboard</button>
   <div class="cat-body">
-    <h2 id="cat-greeting">Hi! Choose a category</h2>
-    <p class="greeting">You have 60 seconds once the puzzle starts. Good luck!</p>
+    <h2 id="cat-greeting">Choose a category</h2>
+    <p class="greeting">90 seconds on the clock once you start!</p>
     <div class="cat-grid" id="cat-grid"></div>
   </div>
 </div>
 
-<!-- ════════════════ GAME SCREEN ════════════════ -->
+<!-- ════ GAME SCREEN ════ -->
 <div id="screen-game" class="screen">
-  <div class="top-bar">
-    <div>
+  <div class="game-top">
+    <div class="game-top-left">
       <div class="cat-label" id="game-cat-label">Category</div>
       <div class="player-label" id="game-player-label">Player</div>
     </div>
-    <div class="timer-box" id="timer-box">1:00</div>
+    <div class="timer-box" id="timer-box">1:30</div>
   </div>
-
   <div class="game-body">
-    <div class="score-live">
-      Found: <span id="live-found">0</span> &nbsp;/&nbsp; <span id="live-total">10</span> words
+    <div class="score-row">
+      Found: <b id="live-found">0</b> &nbsp;/&nbsp; <b id="live-total">10</b> &nbsp;words
     </div>
     <div id="puzzle-grid"></div>
+    <div class="hint-text">Drag across letters to select • All 8 directions</div>
     <div class="word-section">
-      <h3>Find these words</h3>
+      <div class="word-section-title">Find these words</div>
       <div class="word-chips" id="word-chips"></div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ RESULT SCREEN ════════════════ -->
+<!-- ════ RESULT SCREEN ════ -->
 <div id="screen-result" class="screen">
   <div class="top-bar">
     <div class="logo">UBS</div>
     <div class="event-label">Belonging Week 2026</div>
   </div>
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div class="result-body">
     <div class="result-card">
-      <div class="trophy" id="result-trophy">🏆</div>
-      <h2 id="result-title">Time's up!</h2>
+      <span class="trophy" id="result-trophy">🏆</span>
+      <h2 id="result-title">Time's Up!</h2>
       <p class="result-sub" id="result-sub">Great effort!</p>
       <div class="result-score" id="result-score">0</div>
       <div class="result-score-label">words found</div>
       <div class="result-btns">
         <button class="btn-primary" onclick="goToCategories()">Play Again</button>
-        <button class="btn-secondary" onclick="showLeaderboard()">🏆 See Leaderboard</button>
+        <button class="btn-secondary" onclick="showLeaderboard()">🏆 Leaderboard</button>
         <button class="btn-secondary" onclick="goToName()">New Player</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════ LEADERBOARD SCREEN ════════════════ -->
+<!-- ════ LEADERBOARD SCREEN ════ -->
 <div id="screen-lb" class="screen">
   <div class="top-bar">
     <button class="back-btn" onclick="goToCategories()">←</button>
-    <div class="logo" style="flex:1;text-align:left;">Leaderboard</div>
+    <div class="logo" style="flex:1">Leaderboard</div>
     <div class="event-label">Belonging Week 2026</div>
   </div>
   <div class="lb-body">
@@ -422,26 +420,27 @@
 </div>
 
 <!-- TIME UP OVERLAY -->
-<div class="time-up-overlay" id="time-up-overlay">
-  <div class="time-up-box">
-    <h2>⏰ Time's Up!</h2>
-    <p id="overlay-msg">Great effort! Let's see your score.</p>
+<div class="overlay" id="time-up-overlay">
+  <div class="overlay-box">
+    <span class="big-emoji">⏰</span>
+    <h2>Time's Up!</h2>
+    <p id="overlay-msg">Great effort!</p>
     <button class="btn-primary" onclick="showResult()">See My Score</button>
   </div>
 </div>
 
 <script>
 // ══════════════════════════════════════════
-// DATA — 30 categories × 10 words each
+// CATEGORIES — 30 total, Indian Festivals featured
 // ══════════════════════════════════════════
 const CATEGORIES = [
-  { name:"Indian Sweets", icon:"🍬", words:["RASGULLA","MODAK","GHEWAR","SANDESH","PETHA","IMARTI","JALEBI","BARFI","LADOO","HALWA"] },
+  { name:"Indian Festivals", icon:"🎆", words:["DIWALI","HOLI","PONGAL","ONAM","BAISAKHI","NAVRATRI","UGADI","LOHRI","BIHU","CHHATH"], featured:true },
   { name:"National Symbols", icon:"🦚", words:["PEACOCK","TIGER","LOTUS","MANGO","GANGA","BANYAN","COBRA","ELEPHANT","DOLPHIN","HOCKEY"] },
+  { name:"Indian Sweets", icon:"🍬", words:["RASGULLA","MODAK","GHEWAR","SANDESH","PETHA","IMARTI","JALEBI","BARFI","LADOO","HALWA"] },
   { name:"Heritage Sites", icon:"🏛️", words:["AJANTA","HAMPI","KHAJURAHO","KONARK","MAHABODHI","ELLORA","QUTUBMINAR","RANIKIVAV","HUMAYUN","FATEHPUR"] },
   { name:"Wedding Rituals", icon:"💍", words:["MEHENDI","SANGEET","HALDI","SAPTAPADI","VIDAAI","KANYADAAN","JAIMALA","TILAK","SINDOOR","PHERE"] },
   { name:"Classical Dance", icon:"💃", words:["BHARATNATYAM","KATHAK","ODISSI","KUCHIPUDI","MANIPURI","SATTRIYA","MOHINIYATTAM","CHHAU","YAKSHAGANA","THULLAL"] },
   { name:"Indian Spices", icon:"🌶️", words:["TURMERIC","CARDAMOM","SAFFRON","FENUGREEK","CINNAMON","CLOVE","TAMARIND","MUSTARD","CORIANDER","MACE"] },
-  { name:"Indian Festivals", icon:"🎆", words:["DIWALI","HOLI","PONGAL","ONAM","BAISAKHI","NAVRATRI","UGADI","LOHRI","BIHU","CHHATH"] },
   { name:"Indian Rivers", icon:"🌊", words:["GANGA","YAMUNA","GODAVARI","KAVERI","BRAHMAPUTRA","NARMADA","TAPTI","MAHANADI","CHENAB","CHAMBAL"] },
   { name:"Folk Dances", icon:"🥁", words:["GARBA","BHANGRA","LAVANI","BIHU","GHOOMAR","KALBELIA","DANDIYA","DUMHAL","CHERAW","WANGALA"] },
   { name:"Instruments", icon:"🎶", words:["SITAR","TABLA","VEENA","MRIDANGAM","SAROD","SANTOOR","BANSURI","SHEHNAI","PAKHAWAJ","EKTARA"] },
@@ -454,10 +453,8 @@ const CATEGORIES = [
   { name:"Indian Textiles", icon:"🧵", words:["BANARASI","KANJEEVARAM","CHANDERI","BANDHANI","IKAT","PHULKARI","CHIKANKARI","PAITHANI","JAMDANI","AJRAKH"] },
   { name:"Yoga & Wellness", icon:"🧘", words:["PRANAYAMA","AYURVEDA","CHAKRA","MUDRA","BANDHA","DHYANA","DOSHA","PRATYAHARA","NADI","SHATKARMA"] },
   { name:"Freedom Fighters", icon:"🇮🇳", words:["GANDHI","BHAGATSINGH","BOSE","AMBEDKAR","TILAK","LAXMIBAI","AZAD","GOKHALE","NEHRU","SAVARKAR"] },
-  { name:"Martial Arts", icon:"🥋", words:["KALARIPAYATTU","SILAMBAM","GATKA","THANGTA","MARDANI","INBUAN","VAJRA","PARIKHANDA","MUSHTI","LATHI"] },
   { name:"Mythol. Characters", icon:"🕉️", words:["ARJUNA","DRAUPADI","HANUMAN","KARNA","SHAKUNTALA","RADHA","EKLAVYA","ABHIMANYU","SITA","GARUDA"] },
   { name:"Indian Dynasties", icon:"👑", words:["MAURYA","GUPTA","CHOLA","PALLAVA","PALA","RASHTRAKUTA","CHALUKYA","SATAVAHANA","KUSHANA","VIJAYANAGARA"] },
-  { name:"Monsoon & Nature", icon:"🌿", words:["SUNDARBANS","THAR","DECCAN","TERAI","SHOLA","BHABAR","DUARS","RANN","MANGROVE","GHATS"] },
   { name:"Jewelry & Gems", icon:"💎", words:["KUNDAN","POLKI","MEENAKARI","JADAU","NAVRATNA","BIDRI","DOKRA","FILIGREE","THEWA","LAC"] },
   { name:"Architecture", icon:"🕌", words:["DRAVIDIAN","NAGARA","VESARA","MUGHAL","RAJPUT","KALINGA","HOYSALA","CHALUKYAN","COLONIAL","STEPWELL"] },
   { name:"Railway Trains", icon:"🚆", words:["RAJDHANI","SHATABDI","VANDEBHARAT","GATIMAAN","DURONTO","HUMSAFAR","TEJAS","GARIBRATH","ANTYODAYA","DECCAN"] },
@@ -465,11 +462,18 @@ const CATEGORIES = [
   { name:"Philosophical", icon:"☮️", words:["KARMA","DHARMA","MOKSHA","AHIMSA","SATYA","MAYA","ATMAN","BRAHMAN","SAMSARA","NIRVANA"] },
   { name:"Cinema Terms", icon:"🎬", words:["BOLLYWOOD","KOLLYWOOD","TOLLYWOOD","MOLLYWOOD","SANDALWOOD","PLAYBACK","MASALA","PARALLEL","REMAKE","DUBBING"] },
   { name:"City Nicknames", icon:"🏙️", words:["PINKCITY","BLUECITY","GOLDENCITY","SILKCITY","GARDENCITY","SPICECITY","GRANITECITY","TEMPLECITY","WHITECITY","TOYTOWN"] },
+  { name:"Martial Arts", icon:"🥋", words:["KALARIPAYATTU","SILAMBAM","GATKA","THANGTA","MARDANI","INBUAN","VAJRA","PARIKHANDA","MUSHTI","LATHI"] },
+  { name:"Monsoon & Nature", icon:"🌿", words:["SUNDARBANS","THAR","DECCAN","TERAI","SHOLA","BHABAR","DUARS","RANN","MANGROVE","GHATS"] },
 ];
 
 // ══════════════════════════════════════════
-// STATE
+// GRID SETTINGS — 14 cols × 10 rows (mobile-safe)
 // ══════════════════════════════════════════
+const GRID_COLS = 14;
+const GRID_ROWS = 10;
+const DIRS = [[0,1],[1,0],[0,-1],[-1,0],[1,1],[1,-1],[-1,1],[-1,-1]];
+const TIMER_SECONDS = 90;
+
 let playerName = '';
 let currentCat = null;
 let grid = [];
@@ -479,12 +483,10 @@ let selectedCells = [];
 let isDragging = false;
 let dragStart = null;
 let timerInterval = null;
-let secondsLeft = 60;
-let leaderboard = JSON.parse(localStorage.getItem('ubs_lb') || '[]');
+let secondsLeft = TIMER_SECONDS;
+let leaderboard = [];
 
-const GRID_ROWS = 12;
-const GRID_COLS = 18;
-const DIRS = [[0,1],[1,0],[0,-1],[-1,0],[1,1],[1,-1],[-1,1],[-1,-1]];
+try { leaderboard = JSON.parse(localStorage.getItem('ubs_lb_v2') || '[]'); } catch(e) { leaderboard = []; }
 
 // ══════════════════════════════════════════
 // NAVIGATION
@@ -499,20 +501,20 @@ function goToName() {
   stopTimer();
   showScreen('screen-name');
   document.getElementById('name-input').value = '';
-  document.getElementById('name-next-btn').disabled = true;
+  document.getElementById('name-btn').disabled = true;
 }
 
 function goToCategories() {
   stopTimer();
   document.getElementById('time-up-overlay').classList.remove('show');
-  showScreen('screen-category');
-  document.getElementById('cat-greeting').textContent = `Hi ${playerName}! Choose a category`;
   buildCategoryGrid();
+  document.getElementById('cat-greeting').textContent = playerName ? `Hi ${playerName}! Pick a category` : 'Choose a category';
+  showScreen('screen-category');
 }
 
 function showLeaderboard() {
-  showScreen('screen-lb');
   renderLeaderboard();
+  showScreen('screen-lb');
 }
 
 function showResult() {
@@ -521,15 +523,19 @@ function showResult() {
   const score = foundWords.size;
   const total = placedWords.length;
   document.getElementById('result-score').textContent = score;
-  document.getElementById('result-title').textContent = score === total ? '🎉 Perfect Score!' : score >= total*0.7 ? 'Brilliant!' : score >= total*0.4 ? 'Good effort!' : 'Keep practicing!';
-  document.getElementById('result-sub').textContent = `${playerName} found ${score} of ${total} words in ${currentCat.name}`;
-  document.getElementById('result-trophy').textContent = score === total ? '🏆' : score >= total*0.7 ? '🥇' : score >= total*0.4 ? '🥈' : '🥉';
-  // save to leaderboard
+  const title = score === total ? '🎉 Perfect!' : score >= Math.ceil(total*0.7) ? 'Brilliant!' : score >= Math.ceil(total*0.4) ? 'Good effort!' : 'Keep going!';
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-sub').textContent = `${playerName} found ${score} of ${total} words in "${currentCat.name}"`;
+  document.getElementById('result-trophy').textContent = score === total ? '🏆' : score >= Math.ceil(total*0.7) ? '🥇' : score >= Math.ceil(total*0.4) ? '🥈' : '🥉';
+  saveScore(score, total);
+  showScreen('screen-result');
+}
+
+function saveScore(score, total) {
   leaderboard.push({ name: playerName, category: currentCat.name, score, total, ts: Date.now() });
   leaderboard.sort((a,b) => b.score - a.score || a.ts - b.ts);
-  leaderboard = leaderboard.slice(0, 50);
-  localStorage.setItem('ubs_lb', JSON.stringify(leaderboard));
-  showScreen('screen-result');
+  leaderboard = leaderboard.slice(0, 100);
+  try { localStorage.setItem('ubs_lb_v2', JSON.stringify(leaderboard)); } catch(e) {}
 }
 
 // ══════════════════════════════════════════
@@ -537,15 +543,11 @@ function showResult() {
 // ══════════════════════════════════════════
 document.getElementById('name-input').addEventListener('input', function() {
   playerName = this.value.trim();
-  document.getElementById('name-next-btn').disabled = playerName.length < 2;
+  document.getElementById('name-btn').disabled = playerName.length < 2;
 });
 document.getElementById('name-input').addEventListener('keydown', function(e) {
-  if(e.key === 'Enter' && playerName.length >= 2) goToCategories();
+  if (e.key === 'Enter' && playerName.length >= 2) goToCategories();
 });
-
-function goToCategories_fromName() {
-  goToCategories();
-}
 
 // ══════════════════════════════════════════
 // CATEGORY GRID
@@ -555,8 +557,12 @@ function buildCategoryGrid() {
   cg.innerHTML = '';
   CATEGORIES.forEach((cat, i) => {
     const div = document.createElement('div');
-    div.className = 'cat-card';
-    div.innerHTML = `<div class="cat-icon">${cat.icon}</div><div class="cat-name">${cat.name}</div><div class="cat-count">10 words</div>`;
+    div.className = 'cat-card' + (cat.featured ? ' featured' : '');
+    div.innerHTML = `
+      ${cat.featured ? '<div class="featured-tag">⭐ FEATURED</div>' : ''}
+      <span class="cat-icon">${cat.icon}</span>
+      <div class="cat-name">${cat.name}</div>
+      <div class="cat-count">10 words · 90 sec</div>`;
     div.onclick = () => startGame(i);
     cg.appendChild(div);
   });
@@ -583,244 +589,269 @@ function startGame(catIndex) {
 }
 
 // ══════════════════════════════════════════
-// PUZZLE GENERATION — 18×12 to match reference
+// PUZZLE — 14×10 grid
 // ══════════════════════════════════════════
 function shuffle(arr) {
-  for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]; }
+  for (let i = arr.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
   return arr;
 }
 
 function buildPuzzle() {
-  grid = Array.from({length:GRID_ROWS},()=>Array(GRID_COLS).fill(''));
+  grid = Array.from({length:GRID_ROWS}, () => Array(GRID_COLS).fill(''));
   placedWords = [];
   const words = shuffle([...currentCat.words]);
-  for(const w of words){ if(placeWord(w)) placedWords.push(w); }
+  for (const w of words) { if (placeWord(w)) placedWords.push(w); }
   fillRandom();
 }
 
 function placeWord(word) {
   const dirs = shuffle([...DIRS]);
   const positions = [];
-  for(let r=0;r<GRID_ROWS;r++) for(let c=0;c<GRID_COLS;c++) positions.push([r,c]);
+  for (let r=0;r<GRID_ROWS;r++) for (let c=0;c<GRID_COLS;c++) positions.push([r,c]);
   shuffle(positions);
-  for(const [r,c] of positions){
-    for(const [dr,dc] of dirs){
-      if(canPlace(word,r,c,dr,dc)){ doPlace(word,r,c,dr,dc); return true; }
+  for (const [r,c] of positions) {
+    for (const [dr,dc] of dirs) {
+      if (canPlace(word,r,c,dr,dc)) { doPlace(word,r,c,dr,dc); return true; }
     }
   }
   return false;
 }
 
-function canPlace(word,r,c,dr,dc){
-  for(let i=0;i<word.length;i++){
-    const nr=r+dr*i,nc=c+dc*i;
-    if(nr<0||nr>=GRID_ROWS||nc<0||nc>=GRID_COLS) return false;
-    if(grid[nr][nc]&&grid[nr][nc]!==word[i]) return false;
+function canPlace(word,r,c,dr,dc) {
+  for (let i=0;i<word.length;i++) {
+    const nr=r+dr*i, nc=c+dc*i;
+    if (nr<0||nr>=GRID_ROWS||nc<0||nc>=GRID_COLS) return false;
+    if (grid[nr][nc] && grid[nr][nc]!==word[i]) return false;
   }
   return true;
 }
 
-function doPlace(word,r,c,dr,dc){
-  for(let i=0;i<word.length;i++) grid[r+dr*i][c+dc*i]=word[i];
+function doPlace(word,r,c,dr,dc) {
+  for (let i=0;i<word.length;i++) grid[r+dr*i][c+dc*i]=word[i];
 }
 
-function fillRandom(){
-  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  for(let r=0;r<GRID_ROWS;r++) for(let c=0;c<GRID_COLS;c++)
-    if(!grid[r][c]) grid[r][c]=L[Math.floor(Math.random()*26)];
+function fillRandom() {
+  const L = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  for (let r=0;r<GRID_ROWS;r++) for (let c=0;c<GRID_COLS;c++)
+    if (!grid[r][c]) grid[r][c] = L[Math.floor(Math.random()*26)];
 }
 
 // ══════════════════════════════════════════
-// RENDER GRID
+// RENDER — cell size auto-fits screen width
 // ══════════════════════════════════════════
-function renderPuzzleGrid(){
-  const el=document.getElementById('puzzle-grid');
-  el.innerHTML='';
-  for(let r=0;r<GRID_ROWS;r++){
-    const row=document.createElement('div');
-    row.className='grid-row';
-    for(let c=0;c<GRID_COLS;c++){
-      const cell=document.createElement('div');
-      cell.className='cell';
-      cell.textContent=grid[r][c];
-      cell.dataset.r=r; cell.dataset.c=c;
-      cell.addEventListener('mousedown',onMouseDown);
-      cell.addEventListener('mouseover',onMouseOver);
+function getCellSize() {
+  const screenW = Math.min(window.innerWidth, 420);
+  const available = screenW - 32; // padding + borders
+  return Math.floor(available / GRID_COLS);
+}
+
+function renderPuzzleGrid() {
+  const el = document.getElementById('puzzle-grid');
+  el.innerHTML = '';
+  const cellSize = getCellSize();
+  const fontSize = Math.max(11, Math.floor(cellSize * 0.52));
+
+  for (let r=0;r<GRID_ROWS;r++) {
+    const row = document.createElement('div');
+    row.className = 'grid-row';
+    for (let c=0;c<GRID_COLS;c++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.style.width = cellSize + 'px';
+      cell.style.height = cellSize + 'px';
+      cell.style.fontSize = fontSize + 'px';
+      cell.textContent = grid[r][c];
+      cell.dataset.r = r;
+      cell.dataset.c = c;
       row.appendChild(cell);
     }
     el.appendChild(row);
   }
-  el.addEventListener('mouseup',onMouseUp);
-  el.addEventListener('mouseleave',onMouseUp);
 
-  // touch
-  el.addEventListener('touchstart',onTouchStart,{passive:true});
-  el.addEventListener('touchmove',onTouchMove,{passive:false});
-  el.addEventListener('touchend',onTouchEnd);
+  el.addEventListener('mousedown', onMouseDown);
+  el.addEventListener('mouseover', onMouseOver);
+  el.addEventListener('mouseup', onMouseUp);
+  el.addEventListener('mouseleave', onMouseUp);
+  el.addEventListener('touchstart', onTouchStart, {passive:true});
+  el.addEventListener('touchmove', onTouchMove, {passive:false});
+  el.addEventListener('touchend', onTouchEnd);
 }
 
-function renderWordChips(){
-  const el=document.getElementById('word-chips');
-  el.innerHTML='';
-  for(const w of placedWords){
-    const chip=document.createElement('div');
-    chip.className='word-chip';
-    chip.id='chip-'+w;
-    chip.textContent=w;
+function renderWordChips() {
+  const el = document.getElementById('word-chips');
+  el.innerHTML = '';
+  for (const w of placedWords) {
+    const chip = document.createElement('div');
+    chip.className = 'word-chip';
+    chip.id = 'chip-' + w;
+    chip.textContent = w;
     el.appendChild(chip);
   }
 }
 
 // ══════════════════════════════════════════
-// SELECTION LOGIC
+// SELECTION
 // ══════════════════════════════════════════
-function getCell(r,c){ return document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`); }
+function getTargetCell(e) {
+  if (e.target && e.target.dataset && e.target.dataset.r !== undefined) return e.target;
+  return null;
+}
 
-function onMouseDown(e){
-  isDragging=true;
-  dragStart={r:+e.target.dataset.r,c:+e.target.dataset.c};
+function onMouseDown(e) {
+  const cell = getTargetCell(e);
+  if (!cell) return;
+  isDragging = true;
+  dragStart = {r: +cell.dataset.r, c: +cell.dataset.c};
   clearSel();
-  highlightLine(dragStart,dragStart);
+  highlightLine(dragStart, dragStart);
   e.preventDefault();
 }
 
-function onMouseOver(e){
-  if(!isDragging||!dragStart) return;
+function onMouseOver(e) {
+  if (!isDragging || !dragStart) return;
+  const cell = getTargetCell(e);
+  if (!cell) return;
   clearSel();
-  highlightLine(dragStart,{r:+e.target.dataset.r,c:+e.target.dataset.c});
+  highlightLine(dragStart, {r: +cell.dataset.r, c: +cell.dataset.c});
 }
 
-function onMouseUp(){
-  if(!isDragging) return;
-  isDragging=false;
+function onMouseUp() {
+  if (!isDragging) return;
+  isDragging = false;
   checkSel();
 }
 
-function onTouchStart(e){
-  const t=e.touches[0];
-  const el=document.elementFromPoint(t.clientX,t.clientY);
-  if(el&&el.classList.contains('cell')){
-    isDragging=true;
-    dragStart={r:+el.dataset.r,c:+el.dataset.c};
+function onTouchStart(e) {
+  const t = e.touches[0];
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+  if (el && el.classList.contains('cell')) {
+    isDragging = true;
+    dragStart = {r: +el.dataset.r, c: +el.dataset.c};
     clearSel();
-    highlightLine(dragStart,dragStart);
+    highlightLine(dragStart, dragStart);
   }
 }
 
-function onTouchMove(e){
-  if(!isDragging||!dragStart) return;
+function onTouchMove(e) {
+  if (!isDragging || !dragStart) return;
   e.preventDefault();
-  const t=e.touches[0];
-  const el=document.elementFromPoint(t.clientX,t.clientY);
-  if(el&&el.classList.contains('cell')){
+  const t = e.touches[0];
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+  if (el && el.classList.contains('cell')) {
     clearSel();
-    highlightLine(dragStart,{r:+el.dataset.r,c:+el.dataset.c});
+    highlightLine(dragStart, {r: +el.dataset.r, c: +el.dataset.c});
   }
 }
 
-function onTouchEnd(){
-  if(!isDragging) return;
-  isDragging=false;
+function onTouchEnd() {
+  if (!isDragging) return;
+  isDragging = false;
   checkSel();
 }
 
-function getLine(s,e){
-  const dr=e.r-s.r, dc=e.c-s.c;
-  const len=Math.max(Math.abs(dr),Math.abs(dc));
-  if(len===0) return [s];
-  const sr=dr===0?0:dr/Math.abs(dr), sc=dc===0?0:dc/Math.abs(dc);
-  if(Math.abs(dr)!==0&&Math.abs(dc)!==0&&Math.abs(dr)!==Math.abs(dc)){
-    if(Math.abs(dr)>Math.abs(dc)) return Array.from({length:Math.abs(dr)+1},(_,i)=>({r:s.r+i*sr,c:s.c}));
+function getLine(s, e) {
+  const dr = e.r-s.r, dc = e.c-s.c;
+  const len = Math.max(Math.abs(dr), Math.abs(dc));
+  if (len === 0) return [s];
+  const sr = dr===0 ? 0 : dr/Math.abs(dr);
+  const sc = dc===0 ? 0 : dc/Math.abs(dc);
+  if (Math.abs(dr)!==0 && Math.abs(dc)!==0 && Math.abs(dr)!==Math.abs(dc)) {
+    if (Math.abs(dr) > Math.abs(dc)) return Array.from({length:Math.abs(dr)+1},(_,i)=>({r:s.r+i*sr,c:s.c}));
     return Array.from({length:Math.abs(dc)+1},(_,i)=>({r:s.r,c:s.c+i*sc}));
   }
   return Array.from({length:len+1},(_,i)=>({r:s.r+i*sr,c:s.c+i*sc}));
 }
 
-function highlightLine(s,e){
-  selectedCells=getLine(s,e);
-  selectedCells.forEach(({r,c})=>{
-    const cell=getCell(r,c);
-    if(cell&&!cell.classList.contains('found')) cell.classList.add('selected');
+function getCell(r,c) { return document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`); }
+
+function highlightLine(s, e) {
+  selectedCells = getLine(s, e);
+  selectedCells.forEach(({r,c}) => {
+    const cell = getCell(r,c);
+    if (cell && !cell.classList.contains('found')) cell.classList.add('selected');
   });
 }
 
-function clearSel(){
-  document.querySelectorAll('.cell.selected').forEach(c=>c.classList.remove('selected'));
-  selectedCells=[];
+function clearSel() {
+  document.querySelectorAll('.cell.selected').forEach(c => c.classList.remove('selected'));
+  selectedCells = [];
 }
 
-function checkSel(){
-  const word=selectedCells.map(({r,c})=>grid[r][c]).join('');
-  const wordR=word.split('').reverse().join('');
-  let matched=null;
-  for(const pw of placedWords){
-    if(!foundWords.has(pw)&&(pw===word||pw===wordR)){ matched=pw; break; }
+function checkSel() {
+  const word = selectedCells.map(({r,c}) => grid[r][c]).join('');
+  const wordR = word.split('').reverse().join('');
+  let matched = null;
+  for (const pw of placedWords) {
+    if (!foundWords.has(pw) && (pw===word || pw===wordR)) { matched=pw; break; }
   }
-  if(matched){
+  if (matched) {
     foundWords.add(matched);
-    selectedCells.forEach(({r,c})=>{
-      const cell=getCell(r,c);
-      if(cell){ cell.classList.remove('selected'); cell.classList.add('found'); }
+    selectedCells.forEach(({r,c}) => {
+      const cell = getCell(r,c);
+      if (cell) { cell.classList.remove('selected'); cell.classList.add('found'); }
     });
-    const chip=document.getElementById('chip-'+matched);
-    if(chip) chip.classList.add('found');
-    document.getElementById('live-found').textContent=foundWords.size;
-    if(foundWords.size===placedWords.length){ stopTimer(); showResult(); }
+    const chip = document.getElementById('chip-'+matched);
+    if (chip) chip.classList.add('found');
+    document.getElementById('live-found').textContent = foundWords.size;
+    if (foundWords.size === placedWords.length) { stopTimer(); showResult(); }
   } else { clearSel(); }
-  selectedCells=[];
+  selectedCells = [];
 }
 
 // ══════════════════════════════════════════
-// TIMER
+// TIMER — 90 seconds
 // ══════════════════════════════════════════
-function startTimer(){
-  secondsLeft=60;
+function startTimer() {
+  secondsLeft = TIMER_SECONDS;
   updateTimerDisplay();
-  timerInterval=setInterval(()=>{
+  timerInterval = setInterval(() => {
     secondsLeft--;
     updateTimerDisplay();
-    if(secondsLeft<=0){
+    if (secondsLeft <= 0) {
       stopTimer();
-      document.getElementById('overlay-msg').textContent=`${playerName} found ${foundWords.size} of ${placedWords.length} words!`;
+      saveScore(foundWords.size, placedWords.length);
+      document.getElementById('overlay-msg').textContent = `${playerName} found ${foundWords.size} of ${placedWords.length} words!`;
       document.getElementById('time-up-overlay').classList.add('show');
-      // save score
-      leaderboard.push({name:playerName,category:currentCat.name,score:foundWords.size,total:placedWords.length,ts:Date.now()});
-      leaderboard.sort((a,b)=>b.score-a.score||a.ts-b.ts);
-      leaderboard=leaderboard.slice(0,50);
-      localStorage.setItem('ubs_lb',JSON.stringify(leaderboard));
     }
-  },1000);
+  }, 1000);
 }
 
-function stopTimer(){
+function stopTimer() {
   clearInterval(timerInterval);
-  timerInterval=null;
-  document.getElementById('timer-box').classList.remove('warning');
+  timerInterval = null;
+  const tb = document.getElementById('timer-box');
+  if (tb) tb.classList.remove('warning');
 }
 
-function updateTimerDisplay(){
-  const m=Math.floor(secondsLeft/60), s=secondsLeft%60;
-  document.getElementById('timer-box').textContent=`${m}:${s.toString().padStart(2,'0')}`;
-  document.getElementById('timer-box').classList.toggle('warning',secondsLeft<=10);
+function updateTimerDisplay() {
+  const m = Math.floor(secondsLeft/60);
+  const s = secondsLeft % 60;
+  const el = document.getElementById('timer-box');
+  if (el) {
+    el.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+    el.classList.toggle('warning', secondsLeft <= 15);
+  }
 }
 
 // ══════════════════════════════════════════
 // LEADERBOARD
 // ══════════════════════════════════════════
-function renderLeaderboard(){
-  const el=document.getElementById('lb-list');
-  el.innerHTML='';
-  if(!leaderboard.length){
-    el.innerHTML='<div class="lb-empty">No scores yet. Be the first to play!</div>';
+function renderLeaderboard() {
+  const el = document.getElementById('lb-list');
+  el.innerHTML = '';
+  if (!leaderboard.length) {
+    el.innerHTML = '<div class="lb-empty">No scores yet.<br>Be the first to play! 🎉</div>';
     return;
   }
-  leaderboard.slice(0,20).forEach((entry,i)=>{
-    const rankClass=i===0?'gold':i===1?'silver':i===2?'bronze':'';
-    const rankIcon=i===0?'🥇':i===1?'🥈':i===2?'🥉':`#${i+1}`;
-    const row=document.createElement('div');
-    row.className='lb-row';
-    row.innerHTML=`
-      <div class="lb-rank ${rankClass}">${rankIcon}</div>
+  leaderboard.slice(0,30).forEach((entry, i) => {
+    const medal = i===0 ? '🥇' : i===1 ? '🥈' : i===2 ? '🥉' : `#${i+1}`;
+    const row = document.createElement('div');
+    row.className = 'lb-row';
+    row.innerHTML = `
+      <div class="lb-rank">${medal}</div>
       <div class="lb-info">
         <div class="lb-name">${entry.name}</div>
         <div class="lb-cat">${entry.category}</div>
@@ -834,6 +865,12 @@ function renderLeaderboard(){
 // INIT
 // ══════════════════════════════════════════
 buildCategoryGrid();
+window.addEventListener('resize', () => {
+  if (currentCat && document.getElementById('screen-game').classList.contains('active')) {
+    renderPuzzleGrid();
+    renderWordChips();
+  }
+});
 </script>
 </body>
 </html>
